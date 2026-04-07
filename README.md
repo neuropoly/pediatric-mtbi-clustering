@@ -223,9 +223,3 @@ Goal:
 * This is **not a diagnostic model**
 * All findings rely on **latent space analysis**
 
----
-
-If you want, I can next:
-
-* give a **starter template for `extract_latents.py`**
-* or define exactly what shape/format the `.npz` latent files should have to avoid ambiguity
