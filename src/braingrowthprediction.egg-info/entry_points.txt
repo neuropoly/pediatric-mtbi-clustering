@@ -1,0 +1,2 @@
+[console_scripts]
+bgp = bgp.cli:infer
