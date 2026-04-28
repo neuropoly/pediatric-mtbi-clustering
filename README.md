@@ -139,17 +139,22 @@ pip install -e .
 The input to `extract_latents.py` is a CSV file with the following structure:
 
 ```csv
-subject_id,image_uid,split,sex,age,diagnosis,last_diagnosis,time_post_injury_days,image_path,segm_path,latent_path,head_size,accumbens_area,amygdala,brain_stem,caudate,cerebellum_cortex,cerebellum_white_matter,cerebral_cortex,cerebral_white_matter,csf,fourth_ventricle,hippocampus,inferior_lateral_ventricle,lateral_ventricle,pallidum,putamen,thalamus,third_ventricle,ventral_dc
-sub-1007,sub-1007,train,0.0,0.9883,CC,CC,,/home/.../sub-1007_brain.nii.gz,/home/.../sub-1007_segm.nii.gz,/home/.../sub-1007_latent.npz,1403942,0.2954,0.4607,0.1811,0.5138,0.5999,0.0,0.8166,0.4874,0.5338,0.7263,0.4665,0.4773,0.4192,0.0,0.3160,0.2246,0.2905,0.3425
+subject_id,image_uid,split,sex,age,diagnosis,time_post_injury_days,image_path,segm_path,latent_path,head_size,accumbens_area,amygdala,brain_stem,caudate,cerebellum_cortex,cerebellum_white_matter,cerebral_cortex,cerebral_white_matter,csf,fourth_ventricle,hippocampus,inferior_lateral_ventricle,lateral_ventricle,pallidum,putamen,thalamus,third_ventricle,ventral_dc
+sub-1007,sub-1007,train,0.0,0.9883,CC,,/home/.../sub-1007_brain.nii.gz,/home/.../sub-1007_segm.nii.gz,/home/.../sub-1007_latent.npz,1403942,0.2954,0.4607,0.1811,0.5138,0.5999,0.0,0.8166,0.4874,0.5338,0.7263,0.4665,0.4773,0.4192,0.0,0.3160,0.2246,0.2905,0.3425
 ```
 
 ### Key columns
 
+* `subject_id`: Identifier of the participant (in the case of cross-sectional datasets, subject_id=image_uid)
+* `split`: Split for further analyses (train, validation and test)
+* `age`: age of the participant (max-min normalized, min: 12 months, max: 84 months) 
+* `sex`: sex of the participant (0: Male, 1: Female)
 * `image_path`: path to MRI image (input)
+* `segm_path`: path to MRI image segmentation
 * `latent_path`: where latent representation should be saved
-* `diagnosis`: typically `control` or `mtbi` (may appear as `CC`, etc.)
-* `time_post_injury_days`: useful for studying clustering based on this variable
-* additional columns: regional brain measures (optional for downstream analysis)
+* `diagnosis`: typically `control` or `mtbi` or `orthopedic_injury` (may appear as `CC`, etc.)
+* `time_post_injury_days`: useful for studying clustering based on this variable for `mtbi` subjects
+* additional columns: regional brain measures based on `segm_path` (optional for downstream analysis)
 
 ---
 
