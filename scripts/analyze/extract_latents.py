@@ -2,20 +2,17 @@
 
 import argparse
 import pandas as pd
-import torch
 from tqdm import tqdm
 
-# from monai.data import Dataset, DataLoader
 from torch.utils.data import DataLoader
 from monai import transforms
 from bgp import const
 
-# Import de la fonction qui gère le dataset
 from bgp import (get_dataset_from_pd)
 
 class PrintShape(transforms.Transform):
     """
-    Un petite classe pour regarder l'évolution de la taille des images
+    Permet de voir l'évolution de la taille des images
     après chaque transformation.
     """
     def __call__(self, data):
@@ -24,7 +21,7 @@ class PrintShape(transforms.Transform):
 
 def get_dataloader(csv_path, batch_size=1):
     """
-    Fonction de lecture du csv pour sortie loader
+    Fonction de lecture du csv pour sortie loader avec transformations Monai
     """
     transforms_fn = transforms.Compose([
         transforms.CopyItemsD(keys=['image_path'], names=['image']),
@@ -41,7 +38,7 @@ def get_dataloader(csv_path, batch_size=1):
         # A décommencter si on souhaite sauvegarder et visualiser les images après préprocess
         # transforms.SaveImaged(
         #     keys=["image"],
-        #     output_dir="./outputs/ResizePC",
+        #     output_dir="outputs/ResizedMRI",
         #     output_postfix="transformed",
         #     output_ext='.nii.gz',
         #     resample=False,
@@ -51,9 +48,9 @@ def get_dataloader(csv_path, batch_size=1):
     ])
 
     df = pd.read_csv(csv_path)
-    inferene_set = get_dataset_from_pd(df, transforms_fn)
+    inference_set = get_dataset_from_pd(df, transforms_fn)
     
-    loader = DataLoader(dataset=inferene_set, batch_size=batch_size, shuffle=False, num_workers=0)
+    loader = DataLoader(dataset=inference_set, batch_size=batch_size, shuffle=False, num_workers=0)
     return loader
 
 
