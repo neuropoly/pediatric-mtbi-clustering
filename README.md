@@ -206,6 +206,13 @@ python scripts/analyze/cluster_latents.py \
 # 3. Visualize
 python scripts/analyze/visualize_latents.py \
     --dataset_csv data/dataset.csv
+
+
+# 4. Dataset CSV
+python scripts/analyze/prepare_dataset_csv.py \
+    --root_path /home/USERNAME/dataset_root \
+    --output_csv data/dataset.csv \
+    --latent_path outputs/latents
 ```
 
 ---

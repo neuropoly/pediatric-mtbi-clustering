@@ -1,1 +1,5 @@
 src/bgp/__pycache__/
+data/
+outputs/
+*.csv
+*.npz
