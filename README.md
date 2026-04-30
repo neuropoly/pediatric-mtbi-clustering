@@ -212,7 +212,7 @@ python scripts/analyze/visualize_latents.py \
 python scripts/analyze/prepare_dataset_csv.py \
     --root_path /home/USERNAME/dataset_root \
     --output_csv data/dataset.csv \
-    --latent_path output/latents
+    --latent_path outputs/latents
 ```
 
 ---
